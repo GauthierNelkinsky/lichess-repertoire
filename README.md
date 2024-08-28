@@ -72,6 +72,8 @@ update = True
   - `white_output`: Filename for the white repertoire PGN output.
   - `black_optimized_output`: Filename for the optimized black repertoire PGN.
   - `white_optimized_output`: Filename for the optimized white repertoire PGN.
+  - `black_errors_file`: Filename for the white errors.
+  - `white_errors_file`: Filename for the white errors.
 
 - **API**:
   - `token`: Your Lichess API token for authentication.
@@ -101,19 +103,24 @@ Each line in the input file represents a unique Lichess study ID. The script wil
 
 4. **Output**: The script will create output and optimized directories based on the configuration, and save logs, optimized files, and other results accordingly.
 
-## Actions
-
-The script supports the following configurable actions:
-
-- **Log**: Prints logs to the console about the script's progress.
-- **Optimize**: Processes and optimizes PGN files.
-- **Update**: Updates studies on Lichess using the optimized data.
-
 ## Backup and Repository Files
 
 When the script downloads studies, it stores them in a backup directory with a timestamp, preserving the original versions. In addition to this, the script creates a "Repository file" that merges all the downloaded studies into a single large PGN file. This repository file can be particularly useful for training your repertoire using tools like [listudy.org](https://listudy.org).
 
 The repository file is saved in the specified output directory and contains all the downloaded studies, allowing for comprehensive analysis and training.
+
+## Error Files
+
+The script also generates error files (`whiteerrors.txt` and `blackerrors.txt`) during the optimization of the repertoire. These files are used to check the consistency of your repertoire by ensuring that for a given position on the board (represented by a unique FEN), the same move is always played.
+
+In other words, these error files detect inconsistencies or unwanted variations in your repertoire. For example, if you have in your white repertoire two different lines after the same opponent's moves, such as:
+
+- 1. d4 d5 2. c4
+- 1. d4 d5 2. c3
+
+This means that against the same position (after 1. d4 d5), you play both c4 and c3, which constitutes a variation in your white repertoire. These inconsistencies can weaken your repertoire and make it more difficult to memorize and execute the correct moves in real games.
+
+The error file thus helps you identify and correct these variations, ensuring that your repertoire remains solid and consistent, with clear and determined responses for each position encountered on the board.
 
 ## Contributing
 

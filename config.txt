@@ -1,0 +1,22 @@
+[Paths]
+input_dir = ./input
+output_dir = ./output
+
+[Files]
+black_input = blackstudies.txt
+white_input = whitestudies.txt
+black_output = blackrepertoire.pgn
+white_output = whiterepertoire.pgn
+black_optimized_output = blackrepertoire_optimized.pgn
+white_optimized_output = whiterepertoire_optimized.pgn
+white_errors_file = whiteerrors.txt
+black_errors_file = blackerrors.txt
+
+[API]
+token = your_lichess_token_api
+
+[Actions]
+log = False
+optimize = True
+update = False
+find_errors = True
